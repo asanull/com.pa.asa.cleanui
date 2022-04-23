@@ -1,6 +1,5 @@
 function _start() {
 
-    //var _background = document.getElementById('background')
     var _logobackground = document.getElementById('logo-background')
     var _commander = document.getElementById('commander-img')
     var _build = document.getElementById('build-info')
