@@ -60,7 +60,8 @@ function _start() {
     _content.style.marginLeft = "auto"
     _content.style.marginRight = "auto"
 
-    _row.appendChild(_nav('campaign', 'navToGalacticWar'))
+    _row.appendChild(_nav('ai skirmish', 'navToAISkirmish'))
+    _row.appendChild(_nav('galactic war', 'navToGalacticWar'))
     _row.appendChild(_nav('multiplayer', 'navToServerBrowser'))
     _row.appendChild(_nav('mods', 'navToCommunityMods'))
     _row.appendChild(_nav('settings', 'navToSettings'))
