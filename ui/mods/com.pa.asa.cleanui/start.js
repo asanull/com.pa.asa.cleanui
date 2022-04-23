@@ -40,10 +40,10 @@ function _start() {
     _contentwrapper.appendChild(_build)
     _contentwrapper.appendChild(_commander)
     
-    function _button(text, action) {
+    function _nav(text, action) {
         var element = document.createElement('div')
         element.className = "col p-1"
-        element.innerHTML = '<div class="nav_item nav_item_text btn_std_ix" data-bind="click: ' + action + ', click_sound: \'default\', rollover_sound: \'default\'">' + text + '</div>'
+        element.innerHTML = '<div style="width: auto" class="nav_item nav_item_text btn_std_ix" data-bind="click: ' + action + ', click_sound: \'default\', rollover_sound: \'default\'">' + text + '</div>'
         element.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
         element.style.textAlign = "center"
         return element
@@ -61,11 +61,11 @@ function _start() {
     _content.style.marginLeft = "auto"
     _content.style.marginRight = "auto"
 
-    _row.appendChild(_button('campaign', 'navToGalacticWar'))
-    _row.appendChild(_button('multiplayer', 'navToServerBrowser'))
-    _row.appendChild(_button('mods', 'navToCommunityMods'))
-    _row.appendChild(_button('settings', 'navToSettings'))
-    _row.appendChild(_button('quit', 'exit'))
+    _row.appendChild(_nav('campaign', 'navToGalacticWar'))
+    _row.appendChild(_nav('multiplayer', 'navToServerBrowser'))
+    _row.appendChild(_nav('mods', 'navToCommunityMods'))
+    _row.appendChild(_nav('settings', 'navToSettings'))
+    _row.appendChild(_nav('quit', 'exit'))
     _content.appendChild(_row)
 
     document.getElementById('start_column').remove()
