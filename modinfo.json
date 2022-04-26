@@ -3,7 +3,7 @@
   "build": "115958",
   "context": "client",
   "date": "2022-04-23",
-  "description": "This mod replaces some of PAs default UI with a more clean one.",
+  "description": "This mod replaces some of PAs default UI with a more clean one. more details on github.",
   "display_name": "Clean UI",
   "forum": "https://forums.planetaryannihilation.com/threads/client-clean-ui.73581/",
   "identifier": "com.pa.asa.cleanui",
