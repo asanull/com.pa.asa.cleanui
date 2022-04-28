@@ -3,32 +3,22 @@ var menu = {
     instantSandbox: false,
     singleplayer: "",
     multiplayer: "",
+    reconnect: {
+        visible: false,
+        nav: ""
+    },
     mods: "",
     modCount: 0
 }
-menu.singleplayer = document.getElementById('navigation_items').children[0]
-menu.multiplayer = document.getElementById('navigation_items').children[1]
-menu.singleplayer.children[0].outerHTML = '<div id="nav-single-player" class="btn_std_ix nav_item nav_item_text" data-bind="event: {mouseover: toggleSinglePlayerMenu, mouseout: toggleSinglePlayerMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showSinglePlayerMenu }"><loc>Single Player</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
-menu.multiplayer.children[0].outerHTML = '<div id="nav-multiplayer" class="nav_item nav_item_text btn_std_ix" data-bind="event: {mouseover: toggleMultiplayerMenu, mouseout: toggleMultiplayerMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showMultiplayerMenu }"><loc>Multiplayer</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
 
-var _subItem = document.createElement('div')
-_subItem.innerHTML = menu.singleplayer.children[1].outerHTML
-_subItem.style.position = 'absolute'
-_subItem.style.left = "-232px"
-_subItem.style.top = "46px"
-_subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
-_subItem.style.textAlign = "center"
-menu.singleplayer.children[1].remove()
-menu.singleplayer.children[0].appendChild(_subItem)
-
-_subItem = document.createElement('div')
-_subItem.innerHTML = menu.multiplayer.children[1].outerHTML
-_subItem.style.position = 'absolute'
-_subItem.style.left = "-232px"
-_subItem.style.top = "46px"
-_subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
-_subItem.style.textAlign = "center"
-menu.multiplayer.children[0].appendChild(_subItem)
+if ($('#nav_reconnect').length > 0) {
+    menu.reconnect.visible = true
+    menu.reconnect.nav = document.createElement('div')
+    menu.reconnect.nav.className = "col"
+    menu.reconnect.nav.innerHTML = '<div style="width: auto" class="nav_item nav_item_text btn_std_ix" data-bind="visible: canDirectReconnect, click: directReconnect, click_sound: \'default\', rollover_sound: \'default\'">Reconnect</div>'
+    menu.reconnect.nav.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
+    menu.reconnect.nav.style.textAlign = "center"
+}
 
 self.showModMenu = ko.observable(false);
 self.toggleModMenu = function () {
@@ -52,35 +42,64 @@ self.reload = function () {
 
 }
 
-menu.mods = document.createElement('div')
-menu.mods.className = "nav_cascade_group"
-menu.mods.innerHTML = '<div id="nav-mods" class="nav_item nav_item_text btn_std_ix" data-bind="event: {mouseover: toggleModMenu, mouseout: toggleModMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showModMenu }"><loc>Multiplayer</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
+function _init() {
 
-_subItem = document.createElement('div')
-_subItem.innerHTML = menu.multiplayer.children[1].outerHTML
-_subItem.style.position = 'absolute'
-_subItem.style.left = "-232px"
-_subItem.style.top = "46px"
-_subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
-_subItem.style.textAlign = "center"
-_subItem.children[0].outerHTML = '<div id="nav-mods-sub" class="nav_sub_item" style="display: none" data-bind="visible: showModMenu"><div class="nav_item nav_item nav_item_text btn_std_ix" data-bind="click: navToCommunityMods, click_sound: \'default\', rollover_sound: \'default\'"><loc>Community Mods</loc></div><div class="nav_item nav_item nav_item_text btn_std_ix" data-bind="click: reload, click_sound: \'default\', rollover_sound: \'default\'"><loc id="reload-mods">Reload Mods</loc></div></div>'
+    menu.singleplayer = document.getElementById('navigation_items').children[0]
+    menu.multiplayer = document.getElementById('navigation_items').children[1]
+    menu.singleplayer.children[0].outerHTML = '<div id="nav-single-player" class="btn_std_ix nav_item nav_item_text" data-bind="event: {mouseover: toggleSinglePlayerMenu, mouseout: toggleSinglePlayerMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showSinglePlayerMenu }"><loc>Single Player</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
+    menu.multiplayer.children[0].outerHTML = '<div id="nav-multiplayer" class="nav_item nav_item_text btn_std_ix" data-bind="event: {mouseover: toggleMultiplayerMenu, mouseout: toggleMultiplayerMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showMultiplayerMenu }"><loc>Multiplayer</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
 
-menu.multiplayer.children[1].remove()
-menu.mods.children[0].children[0].innerText = "Mods"
-menu.mods.children[0].appendChild(_subItem)
+    var _subItem = document.createElement('div')
+    _subItem.innerHTML = menu.singleplayer.children[1].outerHTML
+    _subItem.style.position = 'absolute'
+    _subItem.style.left = "-232px"
+    _subItem.style.top = "46px"
+    _subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
+    _subItem.style.textAlign = "center"
+    menu.singleplayer.children[1].remove()
+    menu.singleplayer.children[0].appendChild(_subItem)
 
-var glpyh = menu.mods.children[0].children[1]
-glpyh.className = "glyphicon glyphicon-chevron-down nav_carat"
-glpyh.style.top = "6px"
-glpyh.style.right = "12px"
+    _subItem = document.createElement('div')
+    _subItem.innerHTML = menu.multiplayer.children[1].outerHTML
+    _subItem.style.position = 'absolute'
+    _subItem.style.left = "-232px"
+    _subItem.style.top = "46px"
+    _subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
+    _subItem.style.textAlign = "center"
+    menu.multiplayer.children[0].appendChild(_subItem)
 
-var col = document.createElement('div')
-col.className = "col p-1"
-col.innerHTML = '<div style="margin: 0" >' + menu.mods.outerHTML + '</div>'
-col.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
-col.style.textAlign = "center"
-col.style.boxSizing = "content-box !important"
-menu.mods = col
+    menu.mods = document.createElement('div')
+    menu.mods.className = "nav_cascade_group"
+    menu.mods.innerHTML = '<div id="nav-mods" class="nav_item nav_item_text btn_std_ix" data-bind="event: {mouseover: toggleModMenu, mouseout: toggleModMenu}, click_sound: \'default\', rollover_sound: \'default\', css: { nav_item_text_disabled: !allowNewOrJoinGame(), btn_std_ix_active: showModMenu }"><loc>Multiplayer</loc><div class="glyphicon glyphicon-chevron-right nav_carat" aria-hidden="true"></div></div>'
+
+    _subItem = document.createElement('div')
+    _subItem.innerHTML = menu.multiplayer.children[1].outerHTML
+    _subItem.style.position = 'absolute'
+    _subItem.style.left = "-232px"
+    _subItem.style.top = "46px"
+    _subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
+    _subItem.style.textAlign = "center"
+    _subItem.children[0].outerHTML = '<div id="nav-mods-sub" class="nav_sub_item" style="display: none" data-bind="visible: showModMenu"><div class="nav_item nav_item nav_item_text btn_std_ix" data-bind="click: navToCommunityMods, click_sound: \'default\', rollover_sound: \'default\'"><loc>Community Mods</loc></div><div class="nav_item nav_item nav_item_text btn_std_ix" data-bind="click: reload, click_sound: \'default\', rollover_sound: \'default\'"><loc id="reload-mods">Reload Mods</loc></div></div>'
+
+    menu.multiplayer.children[1].remove()
+    menu.mods.children[0].children[0].innerText = "Mods"
+    menu.mods.children[0].appendChild(_subItem)
+
+    var glpyh = menu.mods.children[0].children[1]
+    glpyh.className = "glyphicon glyphicon-chevron-down nav_carat"
+    glpyh.style.top = "6px"
+    glpyh.style.right = "12px"
+
+    var col = document.createElement('div')
+    col.className = "col p-1"
+    col.innerHTML = '<div style="margin: 0" >' + menu.mods.outerHTML + '</div>'
+    col.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
+    col.style.textAlign = "center"
+    col.style.boxSizing = "content-box !important"
+    menu.mods = col
+
+}
+_init()
 
 function _start() {
 
@@ -182,8 +201,6 @@ function _start() {
     _multiplayer.classList.add('nav_cascade_group')
     _multiplayer.innerHTML = menu.multiplayer.innerHTML
 
-    var _mods = _nav('mods', 'navToCommunityMods')
-
     _addButton(_row, _col(_singleplayer))
     _addButton(_row, _col(_multiplayer))
     _addButton(_row, menu.mods)
@@ -199,6 +216,9 @@ function _start() {
     document.getElementById('start_column').remove()
     document.getElementById('content').remove()
     _contentwrapper.appendChild(_content)
+    
+    var before = document.getElementById('nav-ranked').previousElementSibling
+    document.getElementById('nav-multiplayer-custom').insertBefore(menu.reconnect.nav, before)
 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
