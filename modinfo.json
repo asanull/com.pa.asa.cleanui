@@ -6,17 +6,16 @@
   "description": "This mod replaces some of PAs default UI with a more clean one. more details on github.",
   "display_name": "clean UI",
   "forum": "https://forums.planetaryannihilation.com/threads/client-clean-ui.73581/",
-  "identifier": "com.pa.asa.cleanui",
+  "identifier": "com.pa.asa.cleanui.dev",
   "signature": "not yet implemented",
-  "version": "1.4",
+  "version": "1.4.1",
   "scenes": {
     "start": [
-      "coui://ui/mods/com.pa.asa.cleanui/start.js",
-      "coui://ui/mods/com.pa.asa.cleanui/bootstrap.css"
+      "coui://ui/mods/com.pa.asa.cleanui.dev/start.js",
+      "coui://ui/mods/com.pa.asa.cleanui.dev/bootstrap.css"
     ]
   },
   "icon": "https://i.imgur.com/KbEcFvj.png",
-  "future-icon": "https://i.imgur.com/0kXXT72.png",
   "fileSystem": false,
   "searchable": [
       "classic",
