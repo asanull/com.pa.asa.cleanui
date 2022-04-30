@@ -41,6 +41,9 @@ self.reload = function () {
     });
 
 }
+self.startInstantSandbox = function () {
+    console.log('startInstantSandbox');
+}
 
 function _init() {
 
@@ -52,7 +55,7 @@ function _init() {
     var _subItem = document.createElement('div')
     _subItem.innerHTML = menu.singleplayer.children[1].outerHTML
     _subItem.style.position = 'absolute'
-    _subItem.style.left = "-232px"
+    _subItem.style.left = "-230px"
     _subItem.style.top = "46px"
     _subItem.style.background = "linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%)"
     _subItem.style.textAlign = "center"
@@ -97,7 +100,6 @@ function _init() {
     col.style.textAlign = "center"
     col.style.boxSizing = "content-box !important"
     menu.mods = col
-
 }
 _init()
 
@@ -206,25 +208,31 @@ function _start() {
     _addButton(_row, menu.mods)
     _addButton(_row, _nav('settings', 'navToSettings'))
     _addButton(_row, _nav('quit', 'exit'))
-
-    if (menu.instantSandbox) {
-        //_addButton(_row, _nav('sandbox', 'startInstantSandbox'))
-        //currently disabled as it is not working although the button shows up just fine
-    }
     _content.appendChild(_row)
 
-    document.getElementById('start_column').remove()
+    document.getElementById('start_column').style.display = "none"
     document.getElementById('content').remove()
     _contentwrapper.appendChild(_content)
     
     var before = document.getElementById('nav-ranked').previousElementSibling
     document.getElementById('nav-multiplayer-custom').insertBefore(menu.reconnect.nav, before)
 
+    $('#start_column #nav-saved-games').remove()
+    document.getElementById('nav-saved-games').style.display = null
+
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
             _contentwrapper.style.display = null
         }
     }
+    
+    // Instant Sandbox Support
+    document.getElementById( 'navigation_items' ).addEventListener( 'DOMNodeInserted', function ( event ) {
+        if( event.target.parentNode.id == 'navigation_items' ) {
+            document.getElementById('nav-mods-sub').appendChild(document.getElementById('start_instant_sandbox'))
+            document.getElementById('start_column').remove()
+        };
+    }, false );
 }
 _start()
 
