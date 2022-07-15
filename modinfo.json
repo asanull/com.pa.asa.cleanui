@@ -2,20 +2,23 @@
   "author": "asa",
   "build": "115958",
   "context": "client",
-  "date": "2022-04-28",
-  "description": "This mod replaces some of PAs default UI with a more clean one. more details on github.",
-  "display_name": "clean UI",
+  "date": "2022-07-15",
+  "description": "This mod aims to replace and improves aspects of the original UI. This mod is a work-in-progress, more details on github.",
+  "display_name": "Clean UI",
   "forum": "https://forums.planetaryannihilation.com/threads/client-clean-ui.73581/",
   "identifier": "com.pa.asa.cleanui",
   "signature": "not yet implemented",
-  "version": "1.5",
+  "version": "2.0",
   "scenes": {
     "start": [
       "coui://ui/mods/com.pa.asa.cleanui/start.js",
       "coui://ui/mods/com.pa.asa.cleanui/bootstrap.css"
+    ],
+    "system_editor": [
+      "coui://ui/mods/com.pa.asa.cleanui/system_editor.js"
     ]
   },
-  "icon": "https://i.imgur.com/KbEcFvj.png",
+  "icon": "https://i.imgur.com/iWU7Xhp.png",
   "fileSystem": false,
   "searchable": [
       "classic",
@@ -26,7 +29,7 @@
   "authors": [
       "asa"
   ],
-  "github": "https://github com/asanull/com.pa.asa.cleanui",
+  "github": "https://github.com/asanull/com.pa.asa.cleanui",
   "priority": 80,
   "timestamp": 1627689600000,
   "dependencies": [],
