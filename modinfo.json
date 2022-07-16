@@ -8,7 +8,7 @@
   "forum": "https://forums.planetaryannihilation.com/threads/client-clean-ui.73581/",
   "identifier": "com.pa.asa.cleanui",
   "signature": "not yet implemented",
-  "version": "2.0",
+  "version": "2.0.0",
   "scenes": {
     "start": [
       "coui://ui/mods/com.pa.asa.cleanui/start.js",
