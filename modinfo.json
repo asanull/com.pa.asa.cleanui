@@ -2,13 +2,13 @@
   "author": "asa",
   "build": "115958",
   "context": "client",
-  "date": "2022-07-15",
+  "date": "2022-07-18",
   "description": "This mod aims to replace and improves aspects of the original UI. This mod is a work-in-progress, more details on github.",
   "display_name": "Clean UI",
   "forum": "https://forums.planetaryannihilation.com/threads/client-clean-ui.73581/",
   "identifier": "com.pa.asa.cleanui",
   "signature": "not yet implemented",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scenes": {
     "start": [
       "coui://ui/mods/com.pa.asa.cleanui/start.js",
@@ -23,7 +23,6 @@
   "searchable": [
       "classic",
       "titans",
-      "air",
       "asa"
   ],
   "authors": [
