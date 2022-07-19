@@ -301,6 +301,10 @@ function _start() {
     $('#tabs')[0].children[1].outerHTML =
     '<button class="btn_std_ix" data-bind="click: openDocs, click_sound: \'default\', rollover_sound: \'default\', tooltip: \'!LOC:pawiki.xyz/docs\'"><loc>Wiki</loc></button>'
     $('#tabs')[0].children[1].style.height = "20px"
+
+    var news = $('#news')[0]
+    news.setAttribute('data-bind', undefined)
+    news.style.display = "none"
 }
 
 function _addButton(parent, element) {

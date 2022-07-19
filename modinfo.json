@@ -16,6 +16,9 @@
     ],
     "system_editor": [
       "coui://ui/mods/com.pa.asa.cleanui/system_editor.js"
+    ],
+    "uberbar": [
+      "coui://ui/mods/com.pa.asa.cleanui/uberbar.js"
     ]
   },
   "icon": "https://i.imgur.com/iWU7Xhp.png",
